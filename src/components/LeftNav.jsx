@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import LeftNavMenuItem from "./LeftMenuItem";
 import { categories } from "../utils/constants";
 import { Context } from "../context/contextApi";
+import {logOut} from '../authservice'
 const LeftNav = () => {
     const { selectedCategory, setSelectedCategory, mobileMenu } = useContext(Context);
     const navigate = useNavigate();
@@ -16,10 +17,21 @@ const LeftNav = () => {
                 return setSelectedCategory(name);
             case "menu":
                 return false;
+            case "logout":
+                 handleLogout();
+                
             default:
                 break;
         }
     };
+    const handleLogout= async()=>{
+        try {
+            await logOut();
+            navigate("/login");
+        } catch (error) {
+            console.error("Logout failed:", error);
+        }
+    }
 
     return (
         <div
@@ -46,10 +58,18 @@ const LeftNav = () => {
                         {item.divider && <hr className="my-5 border-white/[0.2]" />}
                     </React.Fragment>
                 ))}
+                 <React.Fragment>
+                    <LeftNavMenuItem
+                        text="Logout"
+                        icon={<i className="fas fa-sign-out-alt"></i>} // Use Font Awesome or other icon libraries
+                        action={() => clickHandler("", "logout")}
+                        className="mt-auto" // Push the logout button to the bottom
+                    />
                 <hr className="my-5 border-white/[0.2]" />
                 <div className="text-white/[0.5] text-[12px]">
                     Clone by: JS Manjeet
                 </div>
+                </React.Fragment>
             </div>
         </div>
     );
