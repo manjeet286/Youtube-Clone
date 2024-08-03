@@ -23,16 +23,10 @@ const App = () => {
         <AppContext>
             <BrowserRouter>
                 <div className="flex flex-col h-full">
+                    {user && <Header />} {/* Render Header if user is authenticated */}
                     <Routes>
                         <Route path="/login" element={user ? <Navigate to="/" /> : <Login />} />
-                        <Route path="/" element={user ? (
-                            <>
-                                <Header />
-                                <Feed />
-                            </>
-                        ) : (
-                            <Navigate to="/login" />
-                        )} />
+                        <Route path="/" element={user ? <Feed /> : <Navigate to="/login" />} />
                         <Route path="/searchResult/:searchQuery" element={user ? <SearchResult /> : <Navigate to="/login" />} />
                         <Route path="/video/:id" element={user ? <VideoDetails /> : <Navigate to="/login" />} />
                     </Routes>
