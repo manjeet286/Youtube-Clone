@@ -8,7 +8,7 @@ const options = {
 	port: null,
 	path: '/channel/channels/?id=UCJ5v_MCY6GNUBTO8-D3XoAg&hl=en&gl=US',
 	headers: {
-		'x-rapidapi-key': '5075e71bf4msh4caf350aafa3082p1c0213jsn8e135bc737b5',
+		'x-rapidapi-key': 'cab19bee12mshb4f8c9fdf4c61acp11de90jsn2c92cc39d316',
 		'x-rapidapi-host': 'youtube138.p.rapidapi.com'
 	}
 };
